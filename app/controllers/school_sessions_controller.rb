@@ -1,9 +1,10 @@
-class AdminSessionsController < ApplicationController
+class SchoolSessionsController < ApplicationController
+
   def new
   end
 
   def create
-    user = AdminUser.find_by(email: params[:session][:email].downcase)
+    user = SchoolUser.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
@@ -22,4 +23,5 @@ class AdminSessionsController < ApplicationController
     log_out if logged_in?
     redirect_to root_url
   end
+
 end

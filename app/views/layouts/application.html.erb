@@ -18,8 +18,14 @@
     <br><br><br><br><br><br>
     
     <%= link_to "一番最初の画面",root_path %><br>
+    <p>-----------------------------------------------</p>
     <%= link_to "adminアカウント作成",new_admin_user_path %><br>
-    <%= link_to "adminログインページ",admin_login_path %><br><br><br><br>
+    <%= link_to "adminログインページ",admin_login_path %>
+    <p>-----------------------------------------------</p>
+    <%= link_to "教室用アカウント作成",new_school_user_path %><br>
+    <%= link_to "教室ログインページ",school_login_path %><br>
+    
+    <br><br><br><br>
     
     <%= debug(params) if Rails.env.development? %>
     

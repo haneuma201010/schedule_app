@@ -1,13 +1,12 @@
-<!----管理者用ページ--->
-
+<!---教室用ページ！！--->
 <div class="container">
-  <h1>管理者用　Sign up</h1>
+  <h1>教室用　Sign up</h1>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <%= form_with(model: @user, local: true) do |f| %>
         <%= render 'shared/error_messages' %>
         
-        <%= f.label :name, "名前" %>
+        <%= f.label :name, "教室名" %>
         <div class="form-group">
           <%= f.text_field :name, class: 'form-control' %>
         </div>

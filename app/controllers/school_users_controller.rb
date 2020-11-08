@@ -1,4 +1,5 @@
-class AdminUsersController < ApplicationController
+class SchoolUsersController < ApplicationController
+  
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update, :destroy]
   
@@ -6,17 +7,17 @@ class AdminUsersController < ApplicationController
   def new
   end
   def show
-    @user = AdminUser.find(params[:id])
+    @user = SchoolUser.find(params[:id])
   end
   def new
-    @user = AdminUser.new
+    @user = SchoolUser.new
   end
   
   def create
-    @user = AdminUser.new(user_params)
+    @user = SchoolUser.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "管理者登録成功！！おめでとう！！"
+      flash[:success] = "教室アカウント登録成功！！おめでとう！！"
       redirect_to @user
     else
       render 'new'
@@ -24,22 +25,22 @@ class AdminUsersController < ApplicationController
   end
   
   def edit
-    @user = AdminUser.find(params[:id])
+    @user = SchoolUser.find(params[:id])
   end
   
   def update
-    @user = AdminUser.find(params[:id])
+    @user = SchoolUser.find(params[:id])
     if @user.update(user_params)
       # 更新に成功した場合を扱う。
-      flash[:success] = "管理者情報更新完了"
+      flash[:success] = "教室情報更新完了"
       redirect_to @user
     else
       render 'edit'
     end
   end
   def destroy
-    AdminUser.find(params[:id]).destroy
-    flash[:success] = "管理者削除しました"
+    SchoolUser.find(params[:id]).destroy
+    flash[:success] = "教室を削除しました"
     redirect_to root_path
   end
 
@@ -47,7 +48,7 @@ class AdminUsersController < ApplicationController
   private
 
     def user_params
-      params.require(:admin_user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:school_user).permit(:name, :email, :password, :password_confirmation)
     end
     
     # beforeアクション
@@ -56,13 +57,13 @@ class AdminUsersController < ApplicationController
     def logged_in_user
       unless logged_in?
         flash[:danger] = "ログインしてください"
-        redirect_to admin_login_url
+        redirect_to school_login_url
       end
     end
     
     # 正しいユーザーかどうか確認
     def correct_user
-      @user = AdminUser.find(params[:id])
+      @user = SchoolUser.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
     end
     

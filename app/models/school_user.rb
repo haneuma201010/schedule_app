@@ -1,4 +1,4 @@
-class AdminUser < ApplicationRecord
+class SchoolUser < ApplicationRecord
   attr_accessor :remember_token
   validates :name,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -10,7 +10,7 @@ class AdminUser < ApplicationRecord
                     
     class << self
       # 渡された文字列のハッシュ値を返す
-      def AdminUser.digest(string)
+      def SchoolUser.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                       BCrypt::Engine.cost
         BCrypt::Password.create(string, cost: cost)
@@ -23,8 +23,8 @@ class AdminUser < ApplicationRecord
     end
   # 永続セッションのためにユーザーをデータベースに記憶する
   def remember
-    self.remember_token = AdminUser.new_token
-    update_attribute(:remember_digest, AdminUser.digest(remember_token))
+    self.remember_token = SchoolUser.new_token
+    update_attribute(:remember_digest, SchoolUser.digest(remember_token))
   end
   # 渡されたトークンがダイジェストと一致したらtrueを返す
   def authenticated?(remember_token)
@@ -37,4 +37,5 @@ class AdminUser < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
+
 end

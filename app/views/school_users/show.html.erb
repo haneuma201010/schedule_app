@@ -1,0 +1,9 @@
+<!----教室用ページ--->
+こんにちは、<%= @user.name %> さん<br>
+登録メールアドレス:<%= @user.email %>
+<br><br>
+教室用アカウント
+
+<br><br>
+
+<%= link_to "delete", school_user_path, method: :delete, data: { confirm: "本当に削除しますか？削除するともとに戻せません。" } %>
