@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_023305) do
+ActiveRecord::Schema.define(version: 2020_11_09_025546) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 2020_11_09_023305) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "remember_digest"
+  end
+
+  create_table "school_students", force: :cascade do |t|
+    t.integer "school_user_id"
+    t.integer "student_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["school_user_id"], name: "index_school_students_on_school_user_id"
+    t.index ["student_user_id"], name: "index_school_students_on_student_user_id"
   end
 
   create_table "school_users", force: :cascade do |t|
@@ -39,4 +48,6 @@ ActiveRecord::Schema.define(version: 2020_11_09_023305) do
     t.string "remember_digest"
   end
 
+  add_foreign_key "school_students", "school_users"
+  add_foreign_key "school_students", "student_users"
 end

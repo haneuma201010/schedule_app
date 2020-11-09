@@ -1,4 +1,9 @@
 class StudentUser < ApplicationRecord
+  has_many :school_students
+  has_many :school_users, through: :school_students
+  accepts_nested_attributes_for :student_users
+  
+  
   attr_accessor :remember_token
   validates :name,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
