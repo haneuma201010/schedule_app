@@ -1,0 +1,11 @@
+<!----生徒用ページ--->
+こんにちは、<%= @user.name %> さん<br>
+登録メールアドレス:<%= @user.email %>
+<br><br>
+生徒用アカウント
+
+<br><br>
+
+<% if @user.id == current_user.id %>
+  <%= link_to "生徒情報削除", student_user_path, method: :delete, data: { confirm: "本当に削除しますか？削除するともとに戻せません。" } %>
+<% end %>

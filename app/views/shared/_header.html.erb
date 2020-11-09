@@ -4,12 +4,15 @@
       <% if logged_in? %>
       
         <%= link_to "管理者ログアウト", admin_logout_path, method: :delete %>
-        <%= link_to "管理者編集", edit_admin_user_path(current_user) %>
+        <%= link_to "管理者情報編集", edit_admin_user_path(current_user) %>
         <%= link_to "教室ログアウト", school_logout_path, method: :delete %>
-        <%= link_to "教室編集", edit_school_user_path(current_user) %>
+        <%= link_to "教室情報編集", edit_school_user_path(current_user) %>
+        <%= link_to "生徒ログアウト", logout_path, method: :delete %>
+        <%= link_to "生徒情報編集", edit_student_user_path(current_user) %>
       <% else %>
         <%= link_to "管理者Log in", admin_login_path %>
         <%= link_to "教室Log in", school_login_path %>
+        <%= link_to "生徒Log in", login_path %>
       <% end %>
     </nav>
   </div>
