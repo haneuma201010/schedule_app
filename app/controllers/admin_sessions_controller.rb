@@ -9,10 +9,9 @@ class AdminSessionsController < ApplicationController
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       remember user
       redirect_to user
-      # ユーザーログイン後にユーザー情報のページにリダイレクトする
+      
     else
       flash.now[:danger] = 'メールアドレスまたはパスワードが一致しません'
-      # エラーメッセージを作成する
       render 'new'
     end
   end

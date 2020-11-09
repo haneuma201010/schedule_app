@@ -1,10 +1,11 @@
 class AdminUsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update, :destroy]
   
-  
-  def new
+  def index
+    @users = AdminUser.all
   end
+  
   def show
     @user = AdminUser.find(params[:id])
   end
@@ -50,9 +51,6 @@ class AdminUsersController < ApplicationController
       params.require(:admin_user).permit(:name, :email, :password, :password_confirmation)
     end
     
-    # beforeアクション
-  
-    # ログイン済みユーザーかどうか確認
     def logged_in_user
       unless logged_in?
         flash[:danger] = "ログインしてください"

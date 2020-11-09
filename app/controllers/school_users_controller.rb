@@ -3,9 +3,10 @@ class SchoolUsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update, :destroy]
   
-  
-  def new
+  def index
+    @users = SchoolUser.all
   end
+  
   def show
     @user = SchoolUser.find(params[:id])
   end
@@ -31,7 +32,6 @@ class SchoolUsersController < ApplicationController
   def update
     @user = SchoolUser.find(params[:id])
     if @user.update(user_params)
-      # 更新に成功した場合を扱う。
       flash[:success] = "教室情報更新完了"
       redirect_to @user
     else
@@ -51,9 +51,7 @@ class SchoolUsersController < ApplicationController
       params.require(:school_user).permit(:name, :email, :password, :password_confirmation)
     end
     
-    # beforeアクション
-  
-    # ログイン済みユーザーかどうか確認
+
     def logged_in_user
       unless logged_in?
         flash[:danger] = "ログインしてください"

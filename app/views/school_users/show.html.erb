@@ -6,4 +6,6 @@
 
 <br><br>
 
-<%= link_to "delete", school_user_path, method: :delete, data: { confirm: "本当に削除しますか？削除するともとに戻せません。" } %>
+<% if @user.id == current_user.id %>
+  <%= link_to "校舎情報削除", school_user_path, method: :delete, data: { confirm: "本当に削除しますか？削除するともとに戻せません。" } %>
+<% end %>

@@ -1,5 +1,11 @@
-<h1>admin_users#index</h1><br><br>
+<h1>アプリ管理者一覧</h1>
 
-admin_usersのトップページみたいな・・・<br>
-使いみち不明、とりあえず作成。。。
 
+  <ul class="users">
+    <% @users.each do |user| %>
+      <li>
+        
+        <%= link_to user.name, user %>
+      </li>
+    <% end %>
+  </ul>
