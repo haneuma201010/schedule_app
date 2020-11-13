@@ -1,6 +1,7 @@
 class AdminUser < ApplicationRecord
   attr_accessor :remember_token
   validates :name,  presence: true, length: { maximum: 50 }
+  # validates(:name, {presence: true, length: { maximum:50 }})
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
@@ -24,6 +25,7 @@ class AdminUser < ApplicationRecord
   # 永続セッションのためにユーザーをデータベースに記憶する
   def remember
     self.remember_token = AdminUser.new_token
+    #AdminUser.remember_token = AdminUser.new_token #正しいかわからない　#要確認
     update_attribute(:remember_digest, AdminUser.digest(remember_token))
   end
   # 渡されたトークンがダイジェストと一致したらtrueを返す

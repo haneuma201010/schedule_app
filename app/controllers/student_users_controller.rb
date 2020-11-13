@@ -9,6 +9,7 @@ class StudentUsersController < ApplicationController
   def show
     @user = StudentUser.find(params[:id])
   end
+  
   def new
     @user = StudentUser.new
   end

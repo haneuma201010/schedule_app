@@ -10,6 +10,11 @@ class SchoolUsersController < ApplicationController
   def show
     @user = SchoolUser.find(params[:id])
   end
+  
+  def student_index
+    @student = StudentUser.find(params[:student_user_id])
+  end
+  
   def new
     @user = SchoolUser.new
   end

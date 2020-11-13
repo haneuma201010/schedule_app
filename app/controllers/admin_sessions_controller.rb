@@ -3,13 +3,12 @@ class AdminSessionsController < ApplicationController
   end
 
   def create
-    user = AdminUser.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
-      log_in user
-      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      remember user
-      redirect_to user
-      
+    admin_user = AdminUser.find_by(email: params[:session][:email].downcase)
+    if admin_user && admin_user.authenticate(params[:session][:password]) #admin_userがnilでないかつパスワードが一致した場合
+      log_in admin_user #log_in(admin_user)と同じ、6行目のadmin_user
+      params[:session][:remember_me] == '1' ? remember(admin_user) : forget(admin_user)
+      remember admin_user
+      redirect_to admin_user #これはどういうパス？
     else
       flash.now[:danger] = 'メールアドレスまたはパスワードが一致しません'
       render 'new'

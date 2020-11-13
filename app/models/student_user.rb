@@ -1,7 +1,7 @@
 class StudentUser < ApplicationRecord
-  has_many :school_students
-  has_many :school_users, through: :school_students
-  accepts_nested_attributes_for :student_users
+  # has_many :school_students
+  # has_many :school_users, through: :school_students
+  # accepts_nested_attributes_for :student_users
   
   
   attr_accessor :remember_token
