@@ -48,20 +48,20 @@ class AdminUsersController < ApplicationController
   private
 
     def user_params
-      params.require(:admin_user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:admin_user).permit(:name, :email, :password, :password_confirmation) # user_paramsにはname,email,password以外は渡さない
     end
     
     def logged_in_user
-      unless logged_in?
+      unless admin_logged_in? # loginしていないならloginさせる
         flash[:danger] = "ログインしてください"
-        redirect_to admin_login_url
+        redirect_to admin_login_path
       end
     end
     
     # 正しいユーザーかどうか確認
     def correct_user
-      @user = AdminUser.find(params[:id])
-      redirect_to(root_url) unless admin_current_user?(@user)
+      @user = AdminUser.find(params[:id]) # @userに代入
+      redirect_to(root_url) unless current_admin_user?(@user) #current_admin_userメソッドのはずがcurrent_admin_user?メソッドを呼び出している
     end
     
 
